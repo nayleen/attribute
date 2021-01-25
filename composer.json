@@ -16,5 +16,12 @@
         "psr-4": {
             "Bakabot\\Attribute\\": "tests/"
         }
+    },
+    "config": {
+        "lock": false,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
     }
 }
