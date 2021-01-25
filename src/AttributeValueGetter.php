@@ -7,7 +7,7 @@ namespace Bakabot\Attribute;
 use Bakabot\Attribute\Exception\MissingAttributeException;
 use ReflectionClass;
 
-abstract class AttributeValueGetter
+final class AttributeValueGetter
 {
     private static array $resolvedAttributeValues = [];
 
@@ -24,14 +24,14 @@ abstract class AttributeValueGetter
                     throw new MissingAttributeException($class, $attribute);
                 }
 
-                return self::$resolvedAttributeValues[static::class][$attribute] = is_callable($default)
+                return self::$resolvedAttributeValues[$class][$attribute] = is_callable($default)
                     ? $default()
                     : $default;
             }
 
-            self::$resolvedAttributeValues[static::class][$attribute] = array_pop($attributes)->getArguments()[0];
+            self::$resolvedAttributeValues[$class][$attribute] = array_pop($attributes)->getArguments()[0];
         }
 
-        return self::$resolvedAttributeValues[static::class][$attribute];
+        return self::$resolvedAttributeValues[$class][$attribute];
     }
 }
