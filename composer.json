@@ -1,5 +1,12 @@
 {
     "name": "bakabot/attribute",
+    "config": {
+        "lock": false,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
     "require": {
         "php": ">=8.0"
     },
@@ -8,6 +15,9 @@
         "roave/security-advisories": "dev-master"
     },
     "autoload": {
+        "files": [
+            "src/functions.php"
+        ],
         "psr-4": {
             "Bakabot\\Attribute\\": "src/"
         }
@@ -16,12 +26,5 @@
         "psr-4": {
             "Bakabot\\Attribute\\": "tests/"
         }
-    },
-    "config": {
-        "lock": false,
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true
     }
 }

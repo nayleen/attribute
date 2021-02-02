@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Bakabot\Attribute;
 
 use Bakabot\Attribute\Exception\MissingAttributeException;
+use ReflectionAttribute;
 use ReflectionClass;
 
 final class AttributeValueGetter
@@ -17,8 +18,9 @@ final class AttributeValueGetter
 
         if (!isset(self::$resolvedAttributeValues[$class][$attribute])) {
             $attributes = (new ReflectionClass($class))->getAttributes($attribute);
+            $attributeCount = count($attributes);
 
-            if (count($attributes) === 0) {
+            if ($attributeCount === 0) {
                 // No default provided - strict testing for the property's existence
                 if (func_num_args() === 2) {
                     throw new MissingAttributeException($class, $attribute);
@@ -29,7 +31,11 @@ final class AttributeValueGetter
                     : $default;
             }
 
-            self::$resolvedAttributeValues[$class][$attribute] = array_pop($attributes)->getArguments()[0];
+            $value = $attributeCount > 1 && current($attributes)->isRepeated()
+                ? array_map(static fn(ReflectionAttribute $attr) => $attr->getArguments()[0], $attributes)
+                : array_pop($attributes)->getArguments()[0];
+
+            self::$resolvedAttributeValues[$class][$attribute] = $value;
         }
 
         return self::$resolvedAttributeValues[$class][$attribute];
