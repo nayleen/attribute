@@ -10,8 +10,22 @@ use ReflectionClass;
 
 final class AttributeValueGetter
 {
+    /** @var array<class-string, array<class-string, scalar>> */
     private static array $resolvedAttributeValues = [];
 
+    private static function extractValue(ReflectionAttribute $attribute): mixed
+    {
+        $arguments = $attribute->getArguments();
+
+        return $arguments[0] ?? null;
+    }
+
+    /**
+     * @psalm-param class-string|object $class
+     * @psalm-param class-string $attribute
+     * @psalm-param callable|scalar $default
+     * @psalm-return scalar
+     */
     public static function getAttributeValue(string|object $class, string $attribute, mixed $default = null): mixed
     {
         $class = is_object($class) ? $class::class : $class;
@@ -26,14 +40,17 @@ final class AttributeValueGetter
                     throw new MissingAttributeException($class, $attribute);
                 }
 
-                return self::$resolvedAttributeValues[$class][$attribute] = is_callable($default)
+                $value = is_callable($default)
                     ? $default()
                     : $default;
+            } elseif ($attributeCount > 1 && current($attributes)->isRepeated()) {
+                $value = array_map([self::class, 'extractValue'], $attributes);
+            } else {
+                /** @psalm-var mixed $value */
+                $value = self::extractValue(array_pop($attributes));
             }
 
-            $value = $attributeCount > 1 && current($attributes)->isRepeated()
-                ? array_map(static fn(ReflectionAttribute $attr) => $attr->getArguments()[0], $attributes)
-                : array_pop($attributes)->getArguments()[0];
+            assert(is_scalar($value) || is_array($value));
 
             self::$resolvedAttributeValues[$class][$attribute] = $value;
         }
