@@ -1,0 +1,16 @@
+language: php
+
+php:
+    - '8.0'
+    - 'nightly'
+
+jobs:
+    allow_failures:
+        -   php: 'nightly'
+    fast_finish: true
+
+install:
+    - composer install
+
+script:
+    - make ci

@@ -1,3 +1,7 @@
+.PHONY:	ci tests
+
+ci: vendor csdiff psalm tests
+
 csdiff:
 	php vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
