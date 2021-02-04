@@ -10,7 +10,7 @@ use ReflectionClass;
 
 final class AttributeValueGetter
 {
-    /** @var array<class-string, array<class-string, scalar>> */
+    /** @var array<class-string, array<class-string, mixed>> */
     private static array $resolvedAttributeValues = [];
 
     private static function extractValue(ReflectionAttribute $attribute): mixed
@@ -24,7 +24,7 @@ final class AttributeValueGetter
      * @psalm-param class-string|object $class
      * @psalm-param class-string $attribute
      * @psalm-param callable|scalar $default
-     * @psalm-return scalar
+     * @psalm-return mixed
      */
     public static function getAttributeValue(string|object $class, string $attribute, mixed $default = null): mixed
     {

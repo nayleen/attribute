@@ -53,7 +53,7 @@ class UnrelatedAttribute
 
 class AttributeValueGetterTest extends TestCase
 {
-    public function getCallableVariants(): array
+    public static function getCallableVariants(): array
     {
         return [
             'static_method' => [
@@ -61,11 +61,11 @@ class AttributeValueGetterTest extends TestCase
             ],
 
             'getValue_func' => [
-                static fn(...$args) => getValue(...$args),
+                __NAMESPACE__ . '\getValue',
             ],
 
             'attr_func' => [
-                static fn(...$args) => attr(...$args),
+                __NAMESPACE__ . '\attr',
             ],
         ];
     }
@@ -160,7 +160,7 @@ class AttributeValueGetterTest extends TestCase
         $value = $callable(
             new ClassWithUnrelatedAttribute(),
             RequiredAttribute::class,
-            fn() => 'default'
+            fn () => 'default'
         );
 
         self::assertSame('default', $value);
@@ -176,7 +176,7 @@ class AttributeValueGetterTest extends TestCase
         $value = $callable(
             ClassWithUnrelatedAttribute::class,
             RequiredAttribute::class,
-            fn() => 'default'
+            fn () => 'default'
         );
 
         self::assertSame('default', $value);

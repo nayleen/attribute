@@ -1,5 +1,6 @@
 {
     "name": "bakabot/attribute",
+    "license": "MIT",
     "config": {
         "lock": false,
         "preferred-install": {
@@ -11,6 +12,7 @@
         "php": ">=8.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
         "phpunit/phpunit": "^9.3",
         "roave/security-advisories": "dev-master",
         "vimeo/psalm": "^4.4"
