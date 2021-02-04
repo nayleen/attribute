@@ -19,7 +19,25 @@ return (new PhpCsFixer\Config())
             'declare_equal_normalize' => [
                 'space' => 'single',
             ],
-            'no_unreachable_default_argument_value' => true
+            'ordered_class_elements' => [
+                'order' => [
+                    'use_trait',
+                    'property_private',
+                    'property_protected',
+                    'property_public',
+                    'constant_private',
+                    'constant_protected',
+                    'constant_public',
+                    'construct',
+                    'destruct',
+                    'method_public_static',
+                    'phpunit',
+                    'method_private',
+                    'method_protected',
+                    'method_public',
+                    'magic',
+                ],
+            ],
         ]
     )
     ->setFinder(

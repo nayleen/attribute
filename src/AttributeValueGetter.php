@@ -13,13 +13,6 @@ final class AttributeValueGetter
     /** @var array<class-string, array<class-string, mixed>> */
     private static array $resolvedAttributeValues = [];
 
-    private static function extractValue(ReflectionAttribute $attribute): mixed
-    {
-        $arguments = $attribute->getArguments();
-
-        return $arguments[0] ?? null;
-    }
-
     /**
      * @psalm-param class-string|object $class
      * @psalm-param class-string $attribute
@@ -56,5 +49,12 @@ final class AttributeValueGetter
         }
 
         return self::$resolvedAttributeValues[$class][$attribute];
+    }
+
+    private static function extractValue(ReflectionAttribute $attribute): mixed
+    {
+        $arguments = $attribute->getArguments();
+
+        return $arguments[0] ?? null;
     }
 }
