@@ -1,17 +1,13 @@
-.PHONY:	ci tests
-
-ci: vendor csdiff psalm tests
-
-csdiff:
+csdiff: .php_cs.cache
 	php vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
-csfix:
+csfix: .php_cs.cache
 	php vendor/bin/php-cs-fixer fix
 
 psalm:
 	php vendor/bin/psalm
 
-tests:
+tests: .phpunit.result.cache
 	php vendor/bin/phpunit
 
 vendor: composer.json

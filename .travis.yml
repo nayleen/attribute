@@ -10,8 +10,5 @@ jobs:
         -   php: 'nightly'
     fast_finish: true
 
-install:
-    - composer install
-
 script:
-    - make ci
+    - make vendor csdiff psalm tests

@@ -19,6 +19,8 @@ AttributeValueGetter::getAttributeValue(string|object $class, string $attribute,
 ```
 
 ## Usage
+Works on both instances and class names:
+
 ```php
 use function Bakabot\Attribute\getValue;
 
@@ -32,13 +34,10 @@ final class SomeAttribute
 class MyClass {}
 
 $value = getValue(MyClass::class, 'SomeAttribute'); // "foo"
-```
-
-Works on both instances and class names:
-
-```php
 $value = getValue(new MyClass(), 'SomeAttribute'); // "foo"
 ```
+
+---
 
 Throws a `MissingAttributeException` if the attribute is not set:
 
@@ -52,6 +51,8 @@ Unless you provide a default value as a third argument:
 ```php
 getValue(MyClass::class, 'UnknownAttribute', 'bar'); // "bar"
 ```
+
+---
 
 If the attribute is repeatable, it'll return an array of that attribute's values:
 
