@@ -1,13 +1,6 @@
 {
     "name": "bakabot/attribute",
     "license": "MIT",
-    "config": {
-        "lock": false,
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true
-    },
     "require": {
         "php": ">=8.0"
     },
@@ -29,5 +22,12 @@
         "psr-4": {
             "Bakabot\\Attribute\\": "tests/"
         }
+    },
+    "config": {
+        "lock": false,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
     }
 }
