@@ -1,13 +1,26 @@
 {
     "name": "bakabot/attribute",
+    "license": "MIT",
+    "config": {
+        "lock": false,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
     "require": {
         "php": ">=8.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
         "phpunit/phpunit": "^9.3",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "vimeo/psalm": "^4.4"
     },
     "autoload": {
+        "files": [
+            "src/functions.php"
+        ],
         "psr-4": {
             "Bakabot\\Attribute\\": "src/"
         }
@@ -16,12 +29,5 @@
         "psr-4": {
             "Bakabot\\Attribute\\": "tests/"
         }
-    },
-    "config": {
-        "lock": false,
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true
     }
 }
