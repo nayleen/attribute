@@ -11,4 +11,4 @@ jobs:
     fast_finish: true
 
 script:
-    - make vendor csdiff psalm tests
+    - make ci

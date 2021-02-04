@@ -1,14 +1,19 @@
-csdiff:
+.PHONY: ci csdiff csfix tests
+
+ci: csdiff psalm tests
+
+csdiff: vendor
 	php vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
-csfix:
+csfix: vendor
 	php vendor/bin/php-cs-fixer fix
 
-psalm:
+psalm: vendor
 	php vendor/bin/psalm
 
-tests:
+tests: vendor
 	php vendor/bin/phpunit --testdox
 
-vendor:
-	composer update
+vendor: composer.json
+	composer validate
+	composer install --quiet
