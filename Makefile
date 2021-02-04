@@ -1,14 +1,14 @@
-csdiff: .php_cs.cache
+csdiff:
 	php vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
-csfix: .php_cs.cache
+csfix:
 	php vendor/bin/php-cs-fixer fix
 
 psalm:
 	php vendor/bin/psalm
 
-tests: .phpunit.result.cache
-	php vendor/bin/phpunit
+tests:
+	php vendor/bin/phpunit --testdox
 
-vendor: composer.json
+vendor:
 	composer update
