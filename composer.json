@@ -1,5 +1,6 @@
 {
     "name": "bakabot/attribute",
+    "description": "Provides accessors to single-value PHP Attributes.",
     "license": "MIT",
     "require": {
         "php": ">=8.0"
