@@ -1,6 +1,11 @@
 # bakabot-attribute
 Provides accessors to single-value [PHP Attributes](https://www.php.net/manual/en/language.attributes.overview.php).
 
+## Build Status
+[![Build Status](https://travis-ci.com/bakabot-php/attribute.svg?branch=main)](https://travis-ci.com/bakabot-php/attribute)
+
+---
+
 ## Installation
 `composer require bakabot/attribute`
 
