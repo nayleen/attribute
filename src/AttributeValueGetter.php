@@ -14,10 +14,10 @@ final class AttributeValueGetter
     private static array $resolvedAttributeValues = [];
 
     /**
-     * @psalm-param class-string|object $class
-     * @psalm-param class-string $attribute
-     * @psalm-param callable|scalar $default
-     * @psalm-return mixed
+     * @param class-string|object $class
+     * @param class-string $attribute
+     * @param callable|scalar $default
+     * @return mixed
      */
     public static function getAttributeValue(string|object $class, string $attribute, mixed $default = null): mixed
     {
@@ -39,7 +39,7 @@ final class AttributeValueGetter
             } elseif ($attributeCount > 1 && current($attributes)->isRepeated()) {
                 $value = array_map([self::class, 'extractValue'], $attributes);
             } else {
-                /** @psalm-var mixed $value */
+                /** @var mixed $value */
                 $value = self::extractValue(array_pop($attributes));
             }
 

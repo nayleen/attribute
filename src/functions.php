@@ -5,9 +5,10 @@ declare(strict_types = 1);
 namespace Bakabot\Attribute;
 
 /**
- * @psalm-param class-string|object $class
- * @psalm-param class-string $attribute
- * @psalm-param callable|scalar $default
+ * @param class-string|object $class
+ * @param class-string $attribute
+ * @param callable|scalar $default
+ * @return mixed
  */
 function attr(string|object $class, string $attribute, mixed $default = null): mixed
 {
@@ -20,9 +21,10 @@ function attr(string|object $class, string $attribute, mixed $default = null): m
 }
 
 /**
- * @psalm-param class-string|object $class
- * @psalm-param class-string $attribute
- * @psalm-param callable|scalar $default
+ * @param class-string|object $class
+ * @param class-string $attribute
+ * @param callable|scalar $default
+ * @return mixed
  */
 function getValue(string|object $class, string $attribute, mixed $default = null): mixed
 {
