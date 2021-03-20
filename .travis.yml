@@ -1,11 +1,6 @@
 language: php
 dist: focal
 
-addons:
-    apt:
-        packages:
-            - docker-ce
-
 services:
     - docker
 
