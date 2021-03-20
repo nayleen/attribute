@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 // https://mlocati.github.io/php-cs-fixer-configurator/#version:2.18.2|configurator
 return (new PhpCsFixer\Config())
+    ->setUsingCache(false)
     ->setRiskyAllowed(true)
     ->setRules(
         [
