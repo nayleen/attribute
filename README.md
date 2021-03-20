@@ -1,4 +1,4 @@
-# bakabot-attribute [![Build Status](https://travis-ci.com/bakabot-php/attribute.svg?branch=main)](https://travis-ci.com/bakabot-php/attribute)
+# bakabot-attribute [![Latest Stable Version](https://poser.pugx.org/bakabot/attribute/v)](//packagist.org/packages/bakabot/attribute) [![License](https://poser.pugx.org/bakabot/attribute/license)](//packagist.org/packages/bakabot/attribute) [![Build Status](https://travis-ci.com/bakabot-php/attribute.svg?branch=main)](https://travis-ci.com/bakabot-php/attribute)
 Provides accessors to single-value [PHP Attributes](https://www.php.net/manual/en/language.attributes.overview.php).
 
 
