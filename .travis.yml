@@ -1,13 +1,7 @@
-language: php
-dist: focal
+language: minimal
 
 services:
     - docker
-
-jobs:
-    allow_failures:
-        -   php: 'nightly'
-    fast_finish: true
 
 before_script:
     - docker --version
