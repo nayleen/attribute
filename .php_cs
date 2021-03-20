@@ -19,6 +19,13 @@ return (new PhpCsFixer\Config())
             'declare_equal_normalize' => [
                 'space' => 'single',
             ],
+            'phpdoc_no_empty_return' => false,
+            'php_unit_test_case_static_method_calls' => [
+                'call_type' => 'self'
+            ],
+            'php_unit_method_casing' => [
+                'case' => 'snake_case',
+            ],
             'ordered_class_elements' => [
                 'order' => [
                     'use_trait',
@@ -37,11 +44,13 @@ return (new PhpCsFixer\Config())
                     'method_public',
                     'magic',
                 ],
+                'sort_algorithm' => 'alpha',
             ],
         ]
     )
     ->setFinder(
         PhpCsFixer\Finder::create()
+            ->exclude('tests')
             ->exclude('vendor')
             ->in(__DIR__)
     );

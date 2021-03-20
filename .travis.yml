@@ -1,14 +1,22 @@
 language: php
 dist: focal
 
-php:
-    - '8.0'
-    - 'nightly'
+addons:
+    apt:
+        packages:
+            - docker-ce
+
+services:
+    - docker
 
 jobs:
     allow_failures:
         -   php: 'nightly'
     fast_finish: true
+
+before_script:
+    - docker --version
+    - docker-compose --version
 
 script:
     - make ci

@@ -1,19 +1,20 @@
-.PHONY: ci csdiff csfix tests
+ci: csdiff psalm tests cleanup
 
-ci: csdiff psalm tests
+cleanup:
+	docker-compose down -v
 
 csdiff: vendor
-	php vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+	docker-compose run --rm php vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
 csfix: vendor
-	php vendor/bin/php-cs-fixer fix
+	docker-compose run --rm php vendor/bin/php-cs-fixer fix
 
 psalm: vendor
-	php vendor/bin/psalm
+	docker-compose run --rm php vendor/bin/psalm
 
 tests: vendor
-	php vendor/bin/phpunit --testdox
+	docker-compose run --rm php -dxdebug.mode=coverage vendor/bin/phpunit
 
 vendor: composer.json
-	composer validate
-	composer install --quiet
+	docker-compose run --rm composer validate
+	docker-compose run --rm composer install --quiet --no-cache
