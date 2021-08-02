@@ -132,6 +132,22 @@ class AttributeValueGetterTest extends TestCase
         );
 
         self::assertSame('default', $value);
+
+        $value = $callable(
+            new ClassWithUnrelatedAttribute(),
+            RequiredAttribute::class,
+            null
+        );
+
+        self::assertNull($value);
+
+        $value = $callable(
+            new ClassWithUnrelatedAttribute(),
+            RequiredAttribute::class,
+            []
+        );
+
+        self::assertSame([], $value);
     }
 
     /**
@@ -148,6 +164,22 @@ class AttributeValueGetterTest extends TestCase
         );
 
         self::assertSame('default', $value);
+
+        $value = $callable(
+            ClassWithUnrelatedAttribute::class,
+            RequiredAttribute::class,
+            null
+        );
+
+        self::assertNull($value);
+
+        $value = $callable(
+            ClassWithUnrelatedAttribute::class,
+            RequiredAttribute::class,
+            []
+        );
+
+        self::assertSame([], $value);
     }
 
     /**
@@ -164,6 +196,13 @@ class AttributeValueGetterTest extends TestCase
         );
 
         self::assertSame('default', $value);
+
+        $value = $callable(
+            new ClassWithUnrelatedAttribute(),
+            RequiredAttribute::class,
+        );
+
+        self::assertSame('default', $value);
     }
 
     /**
@@ -177,6 +216,13 @@ class AttributeValueGetterTest extends TestCase
             ClassWithUnrelatedAttribute::class,
             RequiredAttribute::class,
             fn () => 'default'
+        );
+
+        self::assertSame('default', $value);
+
+        $value = $callable(
+            ClassWithUnrelatedAttribute::class,
+            RequiredAttribute::class,
         );
 
         self::assertSame('default', $value);

@@ -16,7 +16,7 @@ final class AttributeValueGetter
     /**
      * @param class-string|object $class
      * @param class-string $attribute
-     * @param callable|scalar $default
+     * @param null|callable|scalar|array $default
      * @return mixed
      */
     public static function getAttributeValue(string|object $class, string $attribute, mixed $default = null): mixed
@@ -33,17 +33,19 @@ final class AttributeValueGetter
                     throw new MissingAttributeException($class, $attribute);
                 }
 
-                $value = is_callable($default)
-                    ? $default()
-                    : $default;
-            } elseif ($attributeCount > 1 && current($attributes)->isRepeated()) {
+                if (!is_callable($default)) {
+                    return $default;
+                }
+
+                $value = $default();
+            } else if ($attributeCount > 1 && current($attributes)->isRepeated()) {
                 $value = array_map([self::class, 'extractValue'], $attributes);
             } else {
                 /** @var mixed $value */
                 $value = self::extractValue(array_pop($attributes));
             }
 
-            assert(is_scalar($value) || is_array($value));
+            assert($value === null || is_scalar($value) || is_array($value));
 
             self::$resolvedAttributeValues[$class][$attribute] = $value;
         }
