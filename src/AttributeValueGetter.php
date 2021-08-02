@@ -7,6 +7,7 @@ namespace Bakabot\Attribute;
 use Bakabot\Attribute\Exception\MissingAttributeException;
 use ReflectionAttribute;
 use ReflectionClass;
+use ReflectionException;
 
 final class AttributeValueGetter
 {
@@ -18,6 +19,8 @@ final class AttributeValueGetter
      * @param class-string $attribute
      * @param null|callable|scalar|array $default
      * @return mixed
+     * @throws MissingAttributeException
+     * @throws ReflectionException
      */
     public static function getAttributeValue(string|object $class, string $attribute, mixed $default = null): mixed
     {

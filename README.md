@@ -26,7 +26,7 @@ Works on both instances and class names:
 use function Bakabot\Attribute\getValue;
 
 #[Attribute]
-final class SomeAttribute
+class SomeAttribute
 {
     public function __construct(private string $value) {}
 }
@@ -50,7 +50,16 @@ getValue(MyClass::class, 'UnknownAttribute');
 Unless you provide a default value as a third argument:
 
 ```php
+getValue(MyClass::class, 'UnknownAttribute', 'foo'); // "foo"
 getValue(MyClass::class, 'UnknownAttribute', 'bar'); // "bar"
+getValue(MyClass::class, 'UnknownAttribute', 'baz'); // "baz"
+```
+
+For heavy lifting or lazy evaluation, a default value can be any `callable`, in which case its resulting value will be cached.
+
+```php
+getValue(MyClass::class, 'UnknownAttribute', fn () => 'bar'); // "bar"
+getValue(MyClass::class, 'UnknownAttribute'); // still "bar"
 ```
 
 ---
