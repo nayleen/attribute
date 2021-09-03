@@ -2,7 +2,8 @@ version: "2"
 
 services:
     composer:
-        image: library/composer
+        image: bakabot/php-dev
+        entrypoint: composer
         volumes:
             - $PWD:/app
 

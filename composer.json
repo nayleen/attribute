@@ -9,24 +9,24 @@
         "bakabot/development": "^2.0",
         "roave/security-advisories": "dev-latest"
     },
-    "autoload": {
-        "files": [
-            "src/functions.php"
-        ],
-        "psr-4": {
-            "Bakabot\\Attribute\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Bakabot\\Attribute\\": "tests/"
-        }
-    },
     "config": {
         "lock": false,
         "preferred-install": {
             "*": "dist"
         },
         "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Bakabot\\Attribute\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bakabot\\Attribute\\": "tests/"
+        }
     }
 }
