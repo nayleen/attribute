@@ -1,24 +1,17 @@
 {
-    "name": "bakabot/attribute",
+    "name": "nayleen/attribute",
     "description": "Provides accessors to single-value PHP Attributes.",
     "license": "MIT",
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.1"
     },
     "require-dev": {
-        "bakabot/development": "^2.0",
+        "nayleen/development": "^2.0",
         "roave/security-advisories": "dev-latest"
-    },
-    "config": {
-        "lock": false,
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
-            "Bakabot\\Attribute\\": "src/"
+            "Nayleen\\Attribute\\": "src/"
         },
         "files": [
             "src/functions.php"
@@ -26,7 +19,22 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Bakabot\\Attribute\\": "tests/"
+            "Nayleen\\Attribute\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
+        "lock": false,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.1.x-dev"
         }
     }
 }

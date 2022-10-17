@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Bakabot\Attribute;
+namespace Nayleen\Attribute;
 
 use Attribute;
-use Bakabot\Attribute\Exception\MissingAttributeException;
+use Nayleen\Attribute\Exception\MissingAttributeException;
 use Closure;
 use PHPUnit\Framework\TestCase;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Bakabot\Attribute;
+namespace Nayleen\Attribute;
 
 /**
  * @param class-string|object $class

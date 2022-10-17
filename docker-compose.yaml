@@ -2,12 +2,14 @@ version: "2"
 
 services:
     composer:
-        image: bakabot/php-dev
+        image: composer:latest
         entrypoint: composer
         volumes:
             - $PWD:/app
+        working_dir: /app
 
     php:
-        image: bakabot/php-dev
+        image: php:8.1-cli
         volumes:
             - $PWD:/app
+        working_dir: /app

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Bakabot\Attribute\Exception;
+namespace Nayleen\Attribute\Exception;
 
 use LogicException;
 

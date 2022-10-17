@@ -1,15 +1,14 @@
-# bakabot-attribute [![Latest Stable Version](https://poser.pugx.org/bakabot/attribute/v)](//packagist.org/packages/bakabot/attribute) [![License](https://poser.pugx.org/bakabot/attribute/license)](//packagist.org/packages/bakabot/attribute) [![Build Status](https://travis-ci.com/bakabot-php/attribute.svg?branch=main)](https://travis-ci.com/bakabot-php/attribute)
+# nayleen-attribute [![Latest Stable Version](https://poser.pugx.org/nayleen/attribute/v)](//packagist.org/packages/nayleen/attribute) [![License](https://poser.pugx.org/nayleen/attribute/license)](//packagist.org/packages/nayleen/attribute)
 Provides accessors to single-value [PHP Attributes](https://www.php.net/manual/en/language.attributes.overview.php).
 
-
 ## Installation
-`composer require bakabot/attribute`
+`composer require nayleen/attribute`
 
 ## Flavors
 For ease of use the library provides three identical way of accessing attribute values:
 
 ```php
-namespace Bakabot\Attribute;
+namespace Nayleen\Attribute;
 
 // functions
 attr(string|object $class, string $attribute, mixed $default = null): mixed;
@@ -23,7 +22,7 @@ AttributeValueGetter::getAttributeValue(string|object $class, string $attribute,
 Works on both instances and class names:
 
 ```php
-use function Bakabot\Attribute\getValue;
+use function Nayleen\Attribute\getValue;
 
 #[Attribute]
 class SomeAttribute
@@ -44,7 +43,7 @@ Throws a `MissingAttributeException` if the attribute is not set:
 
 ```php
 getValue(MyClass::class, 'UnknownAttribute');
-// uncaught Bakabot\Attribute\Exception\MissingAttributeException
+// uncaught Nayleen\Attribute\Exception\MissingAttributeException
 ```
 
 Unless you provide a default value as a third argument:
@@ -67,7 +66,7 @@ getValue(MyClass::class, 'UnknownAttribute'); // still "bar"
 If the attribute is repeatable, it'll return an array of that attribute's values:
 
 ```php
-use function Bakabot\Attribute\getValue;
+use function Nayleen\Attribute\getValue;
 
 #[Attribute(Attribute::IS_REPEATABLE)]
 final class RepeatableAttribute
