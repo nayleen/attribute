@@ -1,3 +1,11 @@
+SHELL=/bin/bash
+
+UID := $(shell id -u)
+GID := $(shell id -g)
+
+export UID
+export GID
+
 ci: cs-diff psalm phpunit cleanup
 
 cleanup:

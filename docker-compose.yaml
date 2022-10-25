@@ -4,12 +4,17 @@ services:
     composer:
         image: composer:latest
         entrypoint: composer
+        environment:
+            - COMPOSER_HOME=/composer
+        user: ${UID:-0}:${GID:-0}
         volumes:
+            - $HOME/.config/composer:/composer
             - $PWD:/app
         working_dir: /app
 
     php:
         image: php:8.1-cli
+        user: ${UID:-0}:${GID:-0}
         volumes:
             - $PWD:/app
         working_dir: /app
