@@ -18,8 +18,8 @@ final class MissingAttributeException extends LogicException
             sprintf(
                 "Class [%s] doesn't have the [%s] attribute.",
                 $class,
-                $attribute
-            )
+                $attribute,
+            ),
         );
     }
 }

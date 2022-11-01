@@ -2,4 +2,4 @@
 
 declare(strict_types = 1);
 
-return new Nayleen\CodeStandard();
+return new Nayleen\CodeStandard(__DIR__);

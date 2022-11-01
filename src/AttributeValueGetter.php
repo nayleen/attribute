@@ -11,14 +11,16 @@ use ReflectionException;
 
 final class AttributeValueGetter
 {
-    /** @var array<class-string, array<class-string, mixed>> */
+    /**
+     * @var array<class-string, array<class-string, mixed>>
+     */
     private static array $resolvedAttributeValues = [];
 
     /**
      * @param class-string|object $class
      * @param class-string $attribute
-     * @param null|callable|scalar|array $default
-     * @return mixed
+     * @param null|array|callable|scalar $default
+     *
      * @throws MissingAttributeException
      * @throws ReflectionException
      */
@@ -41,7 +43,7 @@ final class AttributeValueGetter
                 }
 
                 $value = $default();
-            } else if ($attributeCount > 1 && current($attributes)->isRepeated()) {
+            } elseif ($attributeCount > 1 && current($attributes)->isRepeated()) {
                 $value = array_map([self::class, 'extractValue'], $attributes);
             } else {
                 /** @var mixed $value */
