@@ -1,20 +1,10 @@
-version: "2"
+version: "3.7"
 
 services:
-    composer:
-        image: composer:latest
-        entrypoint: composer
-        environment:
-            - COMPOSER_HOME=/composer
-        user: ${UID:-0}:${GID:-0}
-        volumes:
-            - $HOME/.config/composer:/composer
-            - $PWD:/app
-        working_dir: /app
-
     php:
-        image: php:8.1-cli
-        user: ${UID:-0}:${GID:-0}
+        image: thecodingmachine/php:8.1-v4-cli
+        environment:
+            - PHP_EXTENSION_XDEBUG=1
+        init: true
         volumes:
-            - $PWD:/app
-        working_dir: /app
+            - $PWD:/usr/src/app
