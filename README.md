@@ -5,24 +5,23 @@ Provides accessors to single-value [PHP Attributes](https://www.php.net/manual/e
 `composer require nayleen/attribute`
 
 ## Flavors
-For ease of use the library provides three identical way of accessing attribute values:
+For ease of use the library provides two identical ways of accessing attribute values:
 
 ```php
 namespace Nayleen\Attribute;
 
-// functions
-attr(string|object $class, string $attribute, mixed $default = null): mixed;
-getValue(string|object $class, string $attribute, mixed $default = null): mixed;
+// function
+get(string|object $class, string $attribute, mixed $default = null): mixed;
 
 // public static method
-AttributeValueGetter::getAttributeValue(string|object $class, string $attribute, mixed $default = null): mixed;
+AttributeValueGetter::get(string|object $class, string $attribute, mixed $default = null): mixed;
 ```
 
 ## Usage
 Works on both instances and class names:
 
 ```php
-use function Nayleen\Attribute\getValue;
+use function Nayleen\Attribute\get;
 
 #[Attribute]
 class SomeAttribute
@@ -33,8 +32,8 @@ class SomeAttribute
 #[SomeAttribute('foo')]
 class MyClass {}
 
-$value = getValue(MyClass::class, 'SomeAttribute'); // "foo"
-$value = getValue(new MyClass(), 'SomeAttribute'); // "foo"
+$value = get(MyClass::class, 'SomeAttribute'); // "foo"
+$value = get(new MyClass(), 'SomeAttribute'); // "foo"
 ```
 
 ---
@@ -42,23 +41,22 @@ $value = getValue(new MyClass(), 'SomeAttribute'); // "foo"
 Throws a `MissingAttributeException` if the attribute is not set:
 
 ```php
-getValue(MyClass::class, 'UnknownAttribute');
+get(MyClass::class, 'UnknownAttribute');
 // uncaught Nayleen\Attribute\Exception\MissingAttributeException
 ```
 
 Unless you provide a default value as a third argument:
 
 ```php
-getValue(MyClass::class, 'UnknownAttribute', 'foo'); // "foo"
-getValue(MyClass::class, 'UnknownAttribute', 'bar'); // "bar"
-getValue(MyClass::class, 'UnknownAttribute', 'baz'); // "baz"
+get(MyClass::class, 'UnknownAttribute', 'foo'); // "foo"
+get(MyClass::class, 'UnknownAttribute', 'bar'); // "bar"
+get(MyClass::class, 'UnknownAttribute', 'baz'); // "baz"
 ```
 
-For heavy lifting or lazy evaluation, a default value can be any `callable`, in which case its resulting value will be cached.
+For heavy lifting or lazy evaluation, a default value can be a `callable`:
 
 ```php
-getValue(MyClass::class, 'UnknownAttribute', fn () => 'bar'); // "bar"
-getValue(MyClass::class, 'UnknownAttribute'); // still "bar"
+get(MyClass::class, 'UnknownAttribute', fn () => 'bar'); // "bar"
 ```
 
 ---
@@ -66,7 +64,7 @@ getValue(MyClass::class, 'UnknownAttribute'); // still "bar"
 If the attribute is repeatable, it'll return an array of that attribute's values:
 
 ```php
-use function Nayleen\Attribute\getValue;
+use function Nayleen\Attribute\get;
 
 #[Attribute(Attribute::IS_REPEATABLE)]
 final class RepeatableAttribute
@@ -78,5 +76,5 @@ final class RepeatableAttribute
 #[RepeatableAttribute('bar')]
 class MyClass {}
 
-$value = getValue(MyClass::class, 'RepeatableAttribute'); // ["foo", "bar"]
+$value = get(MyClass::class, 'RepeatableAttribute'); // ["foo", "bar"]
 ```

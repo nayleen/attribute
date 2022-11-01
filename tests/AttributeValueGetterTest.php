@@ -5,33 +5,32 @@ declare(strict_types = 1);
 namespace Nayleen\Attribute;
 
 use Attribute;
-use Closure;
 use Nayleen\Attribute\Exception\MissingAttributeException;
 use PHPUnit\Framework\TestCase;
 
-class ClassWithoutAnyAttributes
+final class ClassWithoutAnyAttributes
 {
 }
 
 #[RepeatableAttribute(1)]
 #[RepeatableAttribute(2)]
 #[RepeatableAttribute(3)]
-class ClassWithRepeatableAttribute
+final class ClassWithRepeatableAttribute
 {
 }
 
 #[RequiredAttribute('required')]
-class ClassWithRequiredAttribute
+final class ClassWithRequiredAttribute
 {
 }
 
 #[UnrelatedAttribute]
-class ClassWithUnrelatedAttribute
+final class ClassWithUnrelatedAttribute
 {
 }
 
 #[Attribute(Attribute::IS_REPEATABLE)]
-class RepeatableAttribute
+final class RepeatableAttribute
 {
     public function __construct(private $num)
     {
@@ -39,7 +38,7 @@ class RepeatableAttribute
 }
 
 #[Attribute]
-class RequiredAttribute
+final class RequiredAttribute
 {
     public function __construct(private $value)
     {
@@ -47,30 +46,26 @@ class RequiredAttribute
 }
 
 #[Attribute]
-class UnrelatedAttribute
+final class UnrelatedAttribute
 {
 }
 
 /**
  * @internal
  *
- * @coversNothing
+ * @backupStaticAttributes
  */
-class AttributeValueGetterTest extends TestCase
+final class AttributeValueGetterTest extends TestCase
 {
     public static function getCallableVariants(): array
     {
         return [
             'static_method' => [
-                Closure::fromCallable([AttributeValueGetter::class, 'getAttributeValue']),
+                AttributeValueGetter::get(...),
             ],
 
-            'getValue_func' => [
-                __NAMESPACE__ . '\getValue',
-            ],
-
-            'attr_func' => [
-                __NAMESPACE__ . '\attr',
+            'get_func' => [
+                __NAMESPACE__ . '\get',
             ],
         ];
     }
@@ -128,13 +123,6 @@ class AttributeValueGetterTest extends TestCase
             ClassWithUnrelatedAttribute::class,
             RequiredAttribute::class,
             fn () => 'default',
-        );
-
-        self::assertSame('default', $value);
-
-        $value = $callable(
-            ClassWithUnrelatedAttribute::class,
-            RequiredAttribute::class,
         );
 
         self::assertSame('default', $value);
@@ -237,13 +225,6 @@ class AttributeValueGetterTest extends TestCase
             new ClassWithUnrelatedAttribute(),
             RequiredAttribute::class,
             fn () => 'default',
-        );
-
-        self::assertSame('default', $value);
-
-        $value = $callable(
-            new ClassWithUnrelatedAttribute(),
-            RequiredAttribute::class,
         );
 
         self::assertSame('default', $value);
