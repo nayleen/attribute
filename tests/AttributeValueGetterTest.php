@@ -29,23 +29,23 @@ final class ClassWithUnrelatedAttribute
 {
 }
 
-#[Attribute(Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_CLASS | Attribute::IS_REPEATABLE)]
 final class RepeatableAttribute
 {
-    public function __construct(private $num)
+    public function __construct(public int $num)
     {
     }
 }
 
-#[Attribute]
+#[Attribute(Attribute::TARGET_CLASS)]
 final class RequiredAttribute
 {
-    public function __construct(private $value)
+    public function __construct(public mixed $value)
     {
     }
 }
 
-#[Attribute]
+#[Attribute(Attribute::TARGET_CLASS)]
 final class UnrelatedAttribute
 {
 }
@@ -57,6 +57,9 @@ final class UnrelatedAttribute
  */
 final class AttributeValueGetterTest extends TestCase
 {
+    /**
+     * @return array<string, array{0: callable}>
+     */
     public static function getCallableVariants(): array
     {
         return [

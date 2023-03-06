@@ -9,17 +9,20 @@ use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
 
+/**
+ * @template T of object
+ */
 final class AttributeValueGetter
 {
     /**
-     * @var array<class-string, ReflectionAttribute[]>
+     * @var array<class-string<T>, ReflectionAttribute<T>[]>
      */
     private static array $classAttributes = [];
 
     /**
-     * @param class-string|object $class
+     * @param class-string<T>|T $class
      * @param class-string $attribute
-     * @param null|array|callable|scalar $default
+     * @param callable|mixed[]|scalar|null $default
      *
      * @throws MissingAttributeException
      * @throws ReflectionException
@@ -29,7 +32,10 @@ final class AttributeValueGetter
         $class = is_object($class) ? $class::class : $class;
 
         if (!isset(self::$classAttributes[$class])) {
-            self::$classAttributes[$class] = (new ReflectionClass($class))->getAttributes($attribute);
+            $classReflection = new ReflectionClass($class);
+            $classAttributes = $classReflection->getAttributes($attribute);
+            /** @var ReflectionAttribute<T>[] $classAttributes */
+            self::$classAttributes[$class] = $classAttributes;
         }
 
         $attributes = self::$classAttributes[$class];
@@ -58,6 +64,9 @@ final class AttributeValueGetter
         return $value;
     }
 
+    /**
+     * @param ReflectionAttribute<T> $attribute
+     */
     private static function value(ReflectionAttribute $attribute): mixed
     {
         $arguments = $attribute->getArguments();
