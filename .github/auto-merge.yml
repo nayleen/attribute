@@ -1,9 +1,0 @@
-# auto merge security patches (as reported by dependabot)
-- match:
-    dependency_type: all
-    update_type: security:patch
-
-# auto merge MINOR semver updates for any package
-- match:
-    dependency_type: all
-    update_type: semver:minor
