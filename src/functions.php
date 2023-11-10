@@ -9,7 +9,7 @@ namespace Nayleen\Attribute;
  * @param class-string $attribute
  * @param callable|scalar $default
  */
-function get(string|object $class, string $attribute, mixed $default = null): mixed
+function get(object|string $class, string $attribute, mixed $default = null): mixed
 {
     // No default provided - strict testing for the property's existence
     if (func_num_args() === 2) {

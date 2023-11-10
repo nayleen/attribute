@@ -8,47 +8,33 @@ use Attribute;
 use Nayleen\Attribute\Exception\MissingAttributeException;
 use PHPUnit\Framework\TestCase;
 
-final class ClassWithoutAnyAttributes
-{
-}
+final class ClassWithoutAnyAttributes {}
 
 #[RepeatableAttribute(1)]
 #[RepeatableAttribute(2)]
 #[RepeatableAttribute(3)]
-final class ClassWithRepeatableAttribute
-{
-}
+final class ClassWithRepeatableAttribute {}
 
 #[RequiredAttribute('required')]
-final class ClassWithRequiredAttribute
-{
-}
+final class ClassWithRequiredAttribute {}
 
 #[UnrelatedAttribute]
-final class ClassWithUnrelatedAttribute
-{
-}
+final class ClassWithUnrelatedAttribute {}
 
 #[Attribute(Attribute::TARGET_CLASS | Attribute::IS_REPEATABLE)]
 final class RepeatableAttribute
 {
-    public function __construct(public int $num)
-    {
-    }
+    public function __construct(public int $num) {}
 }
 
 #[Attribute(Attribute::TARGET_CLASS)]
 final class RequiredAttribute
 {
-    public function __construct(public mixed $value)
-    {
-    }
+    public function __construct(public mixed $value) {}
 }
 
 #[Attribute(Attribute::TARGET_CLASS)]
-final class UnrelatedAttribute
-{
-}
+final class UnrelatedAttribute {}
 
 /**
  * @internal

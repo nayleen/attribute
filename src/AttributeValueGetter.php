@@ -27,7 +27,7 @@ final class AttributeValueGetter
      * @throws MissingAttributeException
      * @throws ReflectionException
      */
-    public static function get(string|object $class, string $attribute, mixed $default = null): mixed
+    public static function get(object|string $class, string $attribute, mixed $default = null): mixed
     {
         $class = is_object($class) ? $class::class : $class;
 
