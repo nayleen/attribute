@@ -1,42 +1,42 @@
 {
-    "name": "nayleen/attribute",
-    "description": "Provides accessors to single-value PHP Attributes.",
-    "license": "MIT",
-    "require": {
-        "php": ">=8.1"
+  "name": "nayleen/attribute",
+  "description": "Provides accessors to single-value PHP Attributes.",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1"
+  },
+  "require-dev": {
+    "nayleen/codestandard": "dev-latest",
+    "nayleen/development-dependencies": "^3.3",
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nayleen\\Attribute\\": "src/"
     },
-    "require-dev": {
-        "nayleen/codestandard": "dev-latest",
-        "nayleen/development-dependencies": "^3",
-        "roave/security-advisories": "dev-latest"
-    },
-    "autoload": {
-        "psr-4": {
-            "Nayleen\\Attribute\\": "src/"
-        },
-        "files": [
-            "src/functions.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Nayleen\\Attribute\\": "tests/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "phpstan/extension-installer": true
-        },
-        "lock": false,
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-main": "3.1.x-dev"
-        }
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nayleen\\Attribute\\": "tests/"
     }
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "phpstan/extension-installer": true
+    },
+    "lock": false,
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "3.2.x-dev"
+    }
+  }
 }

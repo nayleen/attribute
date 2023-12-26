@@ -1,12 +1,11 @@
-version: "3.7"
-
 services:
-    php:
-        image: thecodingmachine/php:8.1-v4-cli
-        container_name: php
-        environment:
-            - PHP_EXTENSION_XDEBUG=1
-            - XDEBUG_MODE=off
-        init: true
-        volumes:
-            - $PWD:/usr/src/app
+  php:
+    image: thecodingmachine/php:${PHP_VERSION:-8.1}-v4-cli
+    container_name: attribute_php
+    environment:
+      - PHP_EXTENSION_XDEBUG=1
+      - XDEBUG_MODE=off
+    init: true
+    restart: "no"
+    volumes:
+      - ./:/usr/src/app

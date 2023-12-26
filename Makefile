@@ -1,3 +1,5 @@
+DEPENDENCY_VERSIONS ?= stable
+
 ci: csdiff static phpunit cleanup
 
 cleanup:
@@ -5,7 +7,7 @@ cleanup:
 
 composer:
 	@docker-compose run --rm php composer validate 2>/dev/null
-	@docker-compose run --rm php composer install --quiet --no-cache 2>/dev/null
+	@docker-compose run --rm php composer update --no-cache --prefer-$(DEPENDENCY_VERSIONS) --prefer-stable 2>/dev/null
 
 coverage: composer
 	@docker-compose run --rm -eXDEBUG_MODE=coverage php php vendor/bin/phpunit --coverage-html=coverage/ 2>/dev/null
